@@ -1,6 +1,6 @@
 package net.dunice.advancedjavaprojectacademy.tasks.block4;
 
-import net.dunice.advanced_java_academy.tasks.Employee;
+import net.dunice.advancedjavaprojectacademy.tasks.Employee;
 
 import java.util.List;
 import java.util.Map;
