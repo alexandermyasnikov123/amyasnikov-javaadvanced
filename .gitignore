@@ -5,6 +5,7 @@ target/
 !**/src/test/**/target/
 **/src/main/**/Test*
 **/src/main/**/test*
+**/checkstyle*.xml
 
 ### STS ###
 .apt_generated
