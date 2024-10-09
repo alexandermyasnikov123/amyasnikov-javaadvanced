@@ -59,8 +59,6 @@ public class Block2 implements Block2Interface {
         map.put(key, oldValue + 1);
     }
 
-    //TODO: Not right implemented
-    //FIXME: Not right impl
     @Override
     public String getCompressedString(String noCompressedString) {
         if (noCompressedString.isEmpty()) {
@@ -72,7 +70,7 @@ public class Block2 implements Block2Interface {
         var repeats = 1;
         var previous = noCompressedString.charAt(0);
 
-        for (int i = 0; i < noCompressedString.length(); ++i) {
+        for (int i = 1; i < noCompressedString.length(); ++i) {
             val current = noCompressedString.charAt(i);
             if (current == previous) {
                 ++repeats;
@@ -83,6 +81,8 @@ public class Block2 implements Block2Interface {
             }
             previous = current;
         }
+        stringBuilder.append(previous);
+        stringBuilder.append(repeats);
 
         return stringBuilder.toString();
     }
