@@ -1,11 +1,11 @@
 package net.dunice.advancedjavaprojectacademy.tasks.task1;
 
-import lombok.Getter;
+import lombok.Data;
 import lombok.NonNull;
 import lombok.val;
 import net.dunice.advancedjavaprojectacademy.tasks.common.StringUtils;
 
-@Getter
+@Data
 public abstract class Animal {
     private int age;
 
@@ -45,7 +45,7 @@ public abstract class Animal {
     public abstract void makeNoise();
 
     @Override
-    public String toString() {
+    public final String toString() {
         return String.format("%1s with name %2s is %3d age", getClass().getSimpleName(), getName(), getAge());
     }
 }
