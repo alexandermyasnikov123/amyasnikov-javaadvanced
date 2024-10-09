@@ -142,15 +142,13 @@ public class Block2 implements Block2Interface {
         val stringBuilder = new StringBuilder(length * 2);
         val middle = length / 2;
 
-        for (int left = 0; left <= middle; ++left) {
-            stringBuilder.append('(');
-            stringBuilder.append(noBracketsString.charAt(left));
-        }
+        for (int i = 0; i <= length; ++i) {
+            val brace = i <= middle ? '(' : ')';
+            stringBuilder.append(brace);
 
-        for (int right = length - 1; right > middle; --right) {
-            val inversedIndex = right - middle;
-            stringBuilder.append(')');
-            stringBuilder.append(noBracketsString.charAt(inversedIndex));
+            if (i < length) {
+                stringBuilder.append(noBracketsString.charAt(i));
+            }
         }
 
         return stringBuilder.toString();
@@ -158,7 +156,24 @@ public class Block2 implements Block2Interface {
 
     @Override
     public String getValidStringNoSpaces(String string) {
-        return "";
+        var whitespaceAppeared = false;
+        val length = string.length();
+        val builder = new StringBuilder(length);
+
+        for (int i = 0; i < length; ++i) {
+            val symbol = string.charAt(i);
+            val isWhitespace = Character.isWhitespace(symbol);
+
+            if (isWhitespace && whitespaceAppeared) {
+                continue;
+            } else {
+                whitespaceAppeared = isWhitespace;
+            }
+
+            builder.append(symbol);
+        }
+
+        return builder.toString();
     }
 
     @Override
