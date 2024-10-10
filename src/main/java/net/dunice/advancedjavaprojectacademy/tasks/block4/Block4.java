@@ -12,8 +12,6 @@ import java.util.stream.Collectors;
 public class Block4 implements Block4Interface {
     private final Comparator<Employee> salaryComparator = Comparator.comparingDouble(Employee::salary);
 
-    private final Comparator<Employee> ageComparator = Comparator.comparingInt(Employee::age);
-
     private final Comparator<Employee> workYearsComparator = Comparator.comparingInt(Employee::workYears);
 
     @Override
@@ -22,9 +20,6 @@ public class Block4 implements Block4Interface {
 
         System.out.println("By salary:");
         employeesList.stream().sorted(salaryComparator).forEach(System.out::println);
-
-        System.out.println("By age:");
-        employeesList.stream().sorted(ageComparator).forEach(System.out::println);
 
         System.out.println("By work years:");
         employeesList.stream().sorted(workYearsComparator).forEach(System.out::println);
