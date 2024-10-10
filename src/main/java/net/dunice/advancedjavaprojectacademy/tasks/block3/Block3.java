@@ -13,11 +13,10 @@ public class Block3 implements Block3Interface {
     @Override
     public List<Student> getAgendaList(List<Student> studentList) {
         val endingAge = 27;
-        return studentList.stream()
-                .filter(student -> {
-                    val isMale = student.sex() == Sex.MAN;
-                    return isMale && student.age() >= adultAge && student.age() <= endingAge;
-                }).toList();
+        return studentList.stream().filter(student -> {
+            val isMale = student.sex() == Sex.MAN;
+            return isMale && student.age() >= adultAge && student.age() <= endingAge;
+        }).toList();
     }
 
     @Override
@@ -43,11 +42,11 @@ public class Block3 implements Block3Interface {
 
     @Override
     public int[] getArrayNumbers(List<String> list) {
-        val amountOfSkipped = 1;
-        return list.stream()
-                .skip(amountOfSkipped)
-                .mapToInt(Integer::valueOf)
-                .toArray();
+        return list.stream().mapToInt(value -> {
+            val offset = 1;
+            val string = new String(value.toCharArray(), offset, value.length() - offset);
+            return Integer.parseInt(string);
+        }).toArray();
     }
 
     @Override
