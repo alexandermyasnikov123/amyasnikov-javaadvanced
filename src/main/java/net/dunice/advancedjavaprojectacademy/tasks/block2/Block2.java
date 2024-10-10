@@ -133,18 +133,19 @@ public class Block2 implements Block2Interface {
 
     @Override
     public String getModifyingString(String noBracketsString) {
-
         val length = noBracketsString.length();
-        if (length % 2 == 0) {
-            throw new UnsupportedOperationException("Odd strings are not supported.");
-        }
-
+        val isOdd = length % 2 == 0;
         val stringBuilder = new StringBuilder(length * 2);
         val middle = length / 2;
 
         for (int i = 0; i <= length; ++i) {
+
             val brace = i <= middle ? '(' : ')';
             stringBuilder.append(brace);
+
+            if (i == middle && isOdd) {
+                stringBuilder.append(')');
+            }
 
             if (i < length) {
                 stringBuilder.append(noBracketsString.charAt(i));
@@ -173,7 +174,7 @@ public class Block2 implements Block2Interface {
             builder.append(symbol);
         }
 
-        return builder.toString();
+        return builder.toString().trim();
     }
 
     @Override
