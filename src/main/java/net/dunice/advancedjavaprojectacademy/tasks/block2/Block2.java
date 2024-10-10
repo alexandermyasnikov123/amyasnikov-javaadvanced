@@ -84,7 +84,11 @@ public class Block2 implements Block2Interface {
         stringBuilder.append(previous);
         stringBuilder.append(repeats);
 
-        return stringBuilder.toString();
+        val compressedString = stringBuilder.toString();
+        if (compressedString.length() > noCompressedString.length()) {
+            return noCompressedString;
+        }
+        return compressedString;
     }
 
     @Override
