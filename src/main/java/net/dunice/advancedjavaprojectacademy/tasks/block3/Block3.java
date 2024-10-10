@@ -14,8 +14,10 @@ public class Block3 implements Block3Interface {
     public List<Student> getAgendaList(List<Student> studentList) {
         val endingAge = 27;
         return studentList.stream()
-                .filter(student -> student.age() >= adultAge && student.age() <= endingAge)
-                .toList();
+                .filter(student -> {
+                    val isMale = student.sex() == Sex.MAN;
+                    return isMale && student.age() >= adultAge && student.age() <= endingAge;
+                }).toList();
     }
 
     @Override
