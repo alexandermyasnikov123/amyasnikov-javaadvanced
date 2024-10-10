@@ -1,4 +1,4 @@
-package net.dunice.advancedjavaprojectacademy.tasks.task1;
+package net.dunice.advancedjavaprojectacademy.tasks.block1;
 
 public final class Cat extends Animal {
     public static final int CAT_LIMIT_AGE = 12;

@@ -1,4 +1,4 @@
-package net.dunice.advancedjavaprojectacademy.tasks.task1;
+package net.dunice.advancedjavaprojectacademy.tasks.block1;
 
 import lombok.Data;
 import lombok.NonNull;
