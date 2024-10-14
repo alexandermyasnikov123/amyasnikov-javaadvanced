@@ -2,7 +2,9 @@ package net.dunice.advancedjavaprojectacademy.tasks.block5;
 
 import lombok.val;
 
+import java.util.List;
 import java.util.concurrent.Callable;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
@@ -115,5 +117,33 @@ public class Block5 {
         });
 
         ThreadUtils.startAndJoinAll(new Thread(factorialFutureTask));
+    }
+
+    public void startTask6() {
+        val future = CompletableFuture.supplyAsync(this::loadRemoteData)
+                .thenApplyAsync(list -> list.stream().map(String::toUpperCase).toList())
+                .thenApplyAsync(this::saveDataLocallyAndReturn)
+                .thenAcceptAsync(System.out::println);
+
+        future.join();
+    }
+
+    private List<String> loadRemoteData() {
+        try {
+            Thread.sleep(1000L);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return List.of("first", "seconds", "third");
+    }
+
+    private List<String> saveDataLocallyAndReturn(List<String> values) {
+        try {
+            Thread.sleep(1000L);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("The data was saved " + values);
+        return values;
     }
 }

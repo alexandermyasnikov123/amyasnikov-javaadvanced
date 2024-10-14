@@ -9,6 +9,8 @@ public class Block5Launcher {
         val block5 = new Block5();
         val repeats = 12;
 
+        block5.startTask6();
+
         block5.startTask5UsingFutureTask();
         block5.startTask5UsingFuture();
 
