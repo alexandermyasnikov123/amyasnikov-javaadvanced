@@ -46,10 +46,8 @@ public class Block2 implements Block2Interface {
 
     @Override
     public boolean isPermutationStrings(String str1, String str2) {
-        val trimStr1 = str1.trim();
-        val trimStr2 = str2.trim();
-        if (trimStr1.equals(trimStr2)) {
-            return true;
+        if (str1.isEmpty() && str2.isEmpty()) {
+            return false;
         }
 
         val firstLetters = new HashMap<Character, Integer>();
