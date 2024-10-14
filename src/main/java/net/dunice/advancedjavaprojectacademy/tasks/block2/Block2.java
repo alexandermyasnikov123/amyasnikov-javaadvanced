@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.Stack;
 
 public class Block2 implements Block2Interface {
     @Override
@@ -45,6 +46,12 @@ public class Block2 implements Block2Interface {
 
     @Override
     public boolean isPermutationStrings(String str1, String str2) {
+        val trimStr1 = str1.trim();
+        val trimStr2 = str2.trim();
+        if (trimStr1.equals(trimStr2)) {
+            return true;
+        }
+
         val firstLetters = new HashMap<Character, Integer>();
         val secondLetters = new HashMap<Character, Integer>();
 
@@ -104,23 +111,28 @@ public class Block2 implements Block2Interface {
 
     @Override
     public boolean isStringValid(String givenString) {
-        val allowedBraces = "({[]})";
-        val braces = new HashMap<Character, Integer>();
+        val openedBrackets = "({[";
+        val closedBrackets = ")}]";
 
-        givenString.chars()
-                .filter(letter -> allowedBraces.contains(Character.toString(letter)))
-                .forEach(brace -> countKeys(braces, (char) brace));
+        val brackets = new Stack<Character>();
+        for (int i = 0; i < givenString.length(); ++i) {
+            val letter = givenString.charAt(i);
+            val stringLetter = Character.toString(letter);
 
-        for (var entry : braces.entrySet()) {
-            val brace = entry.getKey();
-            val count = entry.getValue();
-            val opposite = getOppositeBrace(brace);
+            val isOpenedBracket = openedBrackets.contains(stringLetter);
+            val isClosedBracket = closedBrackets.contains(stringLetter);
 
-            if (!braces.getOrDefault(opposite, 0).equals(count)) {
-                return false;
+            if (isOpenedBracket) {
+                brackets.push(letter);
+            } else if (isClosedBracket) {
+                val oppositeBracket = getOppositeBrace(letter);
+                if (brackets.isEmpty() || !brackets.pop().equals(oppositeBracket)) {
+                    return false;
+                }
             }
         }
-        return true;
+
+        return brackets.isEmpty();
     }
 
     private char getOppositeBrace(char brace) {
