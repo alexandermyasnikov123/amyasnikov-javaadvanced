@@ -26,12 +26,11 @@ public class Block5 {
     });
 
     public void startThreadViaConstructor() {
-        val thread = new Thread(() -> {
-            val startInclusive = 0;
-            val endExclusive = 11;
-            val pause = 500L;
-            threadInfoConsumer.accept(new ThreadInfo<>(startInclusive, endExclusive, pause, System.out::println));
-        });
+        val startInclusive = 1;
+        val endExclusive = 11;
+        val pause = 500L;
+        val threadInfo = new ThreadInfo<>(startInclusive, endExclusive, pause, System.out::println);
+        val thread = new PrinterThread(threadInfo);
         ThreadUtils.startAndJoinAll(thread);
     }
 
